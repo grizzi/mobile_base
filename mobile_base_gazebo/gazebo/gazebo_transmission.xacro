@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="mobile_base">
+
+    <xacro:macro name="wheel_transmission" params="joint_id">
+
+        <!-- Front left wheel -->
+        <transmission name="${joint_id}_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${joint_id}">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="${joint_id}_motor">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        </transmission>
+    </xacro:macro>
+        
+
+    <xacro:macro name="load_gazebo_transmissions">
+        <xacro:wheel_transmission joint_id="${frontLeftWheelId}"/>
+        <xacro:wheel_transmission joint_id="${frontRightWheelId}"/>
+        <xacro:wheel_transmission joint_id="${backLeftWheelId}"/>
+        <xacro:wheel_transmission joint_id="${backRightWheelId}"/>
+    </xacro:macro>
+
+</robot>

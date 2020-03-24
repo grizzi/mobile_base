@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mobile_base_control</name>
+  <version>0.1.0</version>
+  <description>mobile_base_control package</description>
+  <maintainer email="grizzi@mavt.ethz.ch">Giuseppe Rizzi</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>controller_manager</depend>
+  <depend>velocity_controllers</depend>
+  <depend>diff_drive_controller</depend>
+</package>

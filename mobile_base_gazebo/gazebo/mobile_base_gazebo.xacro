@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_base">
+	
+	<!-- description includes -->
+  <xacro:include filename="$(find mobile_base_description)/urdf/properties.urdf.xacro" />
+  <xacro:include filename="$(find mobile_base_description)/urdf/mobile_base.urdf.xacro"/>
+  
+  <!-- gazebo includes -->
+  <xacro:include filename="$(find mobile_base_gazebo)/gazebo/gazebo_transmission.xacro"/>
+  <xacro:include filename="$(find mobile_base_gazebo)/gazebo/gazebo_control.xacro"/>
+  <xacro:include filename="$(find mobile_base_gazebo)/gazebo/gazebo_wheel_physics.xacro"/>
+
+  <xacro:arg name="wheel_joint_type"  default="continuous"/>
+  <xacro:mobile_base wheel_joint_type="$(arg wheel_joint_type)"/>
+
+  
+  <!-- Gazebo -->
+  <xacro:load_gazebo_transmissions/>
+  <xacro:load_gazebo_ros_control/>
+  <xacro:load_wheel_physics/>
+
+</robot>

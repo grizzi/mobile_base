@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mobile_base_description</name>
+  <version>0.1.0</version>
+  <description>4 wheels mobile base description</description>
+  <maintainer email="grizzi@mavt.ethz.ch">Giuseppe Rizzi</maintainer>
+  <license>BSD</license>
+  <author email="grizzi@mavt.ethz.ch">Giuseppe Rizzi</author>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>xacro</depend>
+</package>

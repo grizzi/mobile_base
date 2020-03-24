@@ -1,0 +1,4 @@
+.idea/
+*.pyc
+cmake-build-release/
+cmake-build-debug/

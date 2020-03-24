@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="mobile_base">
+
+    <xacro:macro name="wheel_physics" params="joint_id friction_coeff"> 
+        <gazebo reference="${joint_id}">
+            <mu1 value="${friction_coeff}"/>
+            <mu2 value="${friction_coeff}"/>
+            <fdir1 value="1 0 0"/>
+            <kp>10000000.0</kp> 
+            <kd>1.0</kd>
+            <minDepth>0.005</minDepth>
+            <maxVel>100.0</maxVel>
+            <material>Gazebo/Black</material>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="load_wheel_physics">
+        <xacro:wheel_physics joint_id="${frontLeftWheelId}"  friction_coeff="2.5"/>
+        <xacro:wheel_physics joint_id="${frontRightWheelId}" friction_coeff="2.5"/>
+        <xacro:wheel_physics joint_id="${backLeftWheelId}"   friction_coeff="0.0"/>
+        <xacro:wheel_physics joint_id="${backRightWheelId}"  friction_coeff="0.0"/>
+    </xacro:macro>
+
+</robot>

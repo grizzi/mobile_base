@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_base"> 
+
+    <xacro:include filename="$(find mobile_base_description)/urdf/utils.urdf.xacro" />     
+    <xacro:property name="PI" value="3.1415926535897931"/>
+
+    <!-- Model macros -->   
+    <xacro:macro name="wheel" params="wheel_id X Y wheel_joint_type">
+        <joint name="${wheel_id}" type="${wheel_joint_type}">
+            <parent link="base"/>
+            <child link="${wheel_id}"/>
+            <origin xyz="${X} ${Y} ${wheelHeight - chassisHeight/2.0}" rpy="-${0.5*PI} 0 0" />
+            <axis xyz="0 0 1" rpy="0 0 0" />
+            <dynamics damping="1.0" friction="0.0"/>
+            <limit effort="1" velocity="1"/>
+            <joint_properties damping="0.2" friction="0.2"/>
+        </joint>
+
+        <link name="${wheel_id}">
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder length="${wheelWidth/10}" radius="${wheelRadius}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder length="${wheelWidth}" radius="${wheelRadius}"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <mass value="${wheelMass}"/>
+                <cylinder_inertia m="${wheelMass}" r="${wheelRadius}" h="${wheelWidth}"/>
+            </inertial>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="chassis">
+
+        <link name="base">
+            <collision> 
+                <origin xyz="0 0 0" rpy="0 0 0"/> 
+                <geometry> 
+                    <box size="${chassisLength} ${chassisWidth} ${chassisHeight}"/> 
+                </geometry> 
+            </collision>
+            <visual> 
+                <origin xyz="0 0 0" rpy="0 0 0"/> 
+                <geometry> 
+                    <box size="${chassisLength} ${chassisWidth} ${chassisHeight}"/> 
+                </geometry> 
+                <material name="green"/>
+            </visual>
+        </link>
+
+        <gazebo reference="base">
+            <material>Gazebo/Green</material>
+        </gazebo>
+
+        <!-- Fixed joint to add dummy inertia link -->
+        <joint name="base_to_base_inertia" type="fixed">
+          <parent link="base"/>
+          <child link="base_inertia"/>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Dummy inertia link, because KDL cannot have inertia on the base link -->
+        <link name="base_inertia">
+          <inertial> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${chassisMass}"/> 
+            <box_inertia m="${chassisMass}" 
+                         x="${chassisLength}" 
+                         y="${chassisWidth}"
+                         z="${chassisHeight}"/>
+          </inertial>  
+        </link>
+
+    </xacro:macro>
+
+    <xacro:macro name="mobile_base" params="wheel_joint_type:=continuous">
+        <chassis/>
+
+        <wheel wheel_id="${frontLeftWheelId}" X="${frontWheelX}" 
+            Y="${chassisWidth/2+wheelClearance+wheelWidth/2}" 
+            wheel_joint_type="${wheel_joint_type}"/>
+        
+        <wheel wheel_id="${frontRightWheelId}" X="${frontWheelX}" 
+            Y="${-chassisWidth/2-wheelClearance-wheelWidth/2}"
+            wheel_joint_type="${wheel_joint_type}"/>
+
+        <wheel wheel_id="${backLeftWheelId}" X="${backWheelX}" 
+            Y="${chassisWidth/2+wheelClearance+wheelWidth/2}"
+	    wheel_joint_type="${wheel_joint_type}"/>
+
+        <wheel wheel_id="${backRightWheelId}" X="${backWheelX}" 
+            Y="${-chassisWidth/2-wheelClearance-wheelWidth/2}"
+            wheel_joint_type="${wheel_joint_type}" />
+    </xacro:macro>
+</robot>

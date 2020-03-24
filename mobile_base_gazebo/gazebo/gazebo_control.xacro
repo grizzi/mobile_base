@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<!-- This file contains the Gazebo controller interface. -->
+<robot name="mobile_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
+   <xacro:macro name="load_gazebo_ros_control"> 
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/mobile_base</robotNamespace>
+        <controlPeriod>0.001</controlPeriod>
+        <robotParam>robot_description</robotParam>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+</robot>
