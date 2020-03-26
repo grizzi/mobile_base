@@ -1,6 +1,10 @@
-gazebo_ros_control:
-  pid_gains:
-    FL_WHEEL: {p: 100.0, i: 0.0, d: 10.0}
-    FR_WHEEL: {p: 100.0, i: 0.0, d: 10.0}
-    BL_WHEEL: {p: 100.0, i: 0.0, d: 10.0}
-    BR_WHEEL: {p: 100.0, i: 0.0, d: 10.0} # i:0.1  
+# comment this out if tracking is not good
+# gazebo will print out an error but no worries. This means that for position
+# and velocity command the command will be perfectly executed without it being
+# converted to an effort command
+# gazebo_ros_control:
+#   pid_gains:
+#     FL_WHEEL: {p: 100.0, i: 0.0, d: 0.0}
+#     FR_WHEEL: {p: 100.0, i: 0.0, d: 0.0}
+#     BL_WHEEL: {p: 100.0, i: 0.0, d: 0.0}
+#     BR_WHEEL: {p: 100.0, i: 0.0, d: 0.0} 

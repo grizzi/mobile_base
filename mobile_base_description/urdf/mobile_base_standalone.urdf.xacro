@@ -2,7 +2,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_base">
 	
   <!-- Includes -->
-  <xacro:arg name="simulation" 			default="false"/>
+  <xacro:arg name="robot_name"          default="mobile_base"/>
+  <xacro:arg name="simulation" 			    default="false"/>
   <xacro:arg name="wheel_joint_type"  	default="fixed"/> <!-- continuous for gazebo -->
   
   <!-- Load the base -->
@@ -12,5 +13,6 @@
   <!-- Ros control -->
   <xacro:if value="$(arg simulation)">
     <xacro:include filename="$(find mobile_base_description)/urdf/gazebo/control.xacro"/>
+    <xacro:load_gazebo_ros_control ns="$(arg robot_name)"/>
   </xacro:if>
 </robot>

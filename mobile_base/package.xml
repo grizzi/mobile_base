@@ -10,6 +10,7 @@
   <run_depend>mobile_base_gazebo</run_depend>
   <run_depend>mobile_base_control</run_depend>
   <run_depend>mobile_base_sim</run_depend>
+  <run_depend>mobile_base_logging</run_depend>
   
    <export>
    	  <metapackage />

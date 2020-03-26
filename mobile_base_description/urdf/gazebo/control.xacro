@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 
 <!-- This file contains the Gazebo controller interface. -->
-<robot name="mobile_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
-   <xacro:macro name="load_gazebo_ros_control" params="ns:=mobile_base"> 
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   <xacro:macro name="load_gazebo_ros_control" params="ns:='' "> 
     <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-        <robotNamespace>/mobile_base</robotNamespace>
-        <!-- <controlPeriod>0.001</controlPeriod> -->
-        <robotParam>robot_description</robotParam>
+        <robotNamespace>${ns}</robotNamespace>
         <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
       </plugin>
     </gazebo>

@@ -22,27 +22,28 @@ joint_state_controller:
 #   pid: {p: 100.0, i: 0.01, d: 10.0}
     
 # Differential Drive Controller -------------------------------  
-differential_drive_controller:
+skid_steer_controller:
   type: "diff_drive_controller/DiffDriveController"
-  left_wheel: 'FL_WHEEL'
-  right_wheel: 'FR_WHEEL'
-  pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
-  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  left_wheel: ['FL_WHEEL', 'BL_WHEEL']
+  right_wheel: ['FR_WHEEL', 'BR_WHEEL']
+  pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+  twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
   publish_rate: 50.0               # default: 50
 
   base_frame_id: base #default: base_link
+  estimate_velocity_from_position: false
 
   # Velocity and acceleration limits
   # Whenever a min_* is unspecified, default to -max_*
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 1.0  # m/s
+      max_velocity           : 2.0  # m/s
       min_velocity           : -0.5 # m/s
       has_acceleration_limits: true
       max_acceleration       : 0.8  # m/s^2
       min_acceleration       : -0.4 # m/s^2
-      has_jerk_limits        : true
+      has_jerk_limits        : false
       max_jerk               : 5.0  # m/s^3
   angular:
     z:
@@ -50,12 +51,18 @@ differential_drive_controller:
       max_velocity           : 1.7  # rad/s
       has_acceleration_limits: true
       max_acceleration       : 1.5  # rad/s^2
-      has_jerk_limits        : true
+      has_jerk_limits        : false
       max_jerk               : 2.5  # rad/s^3
   
   enable_odom_tf: true
   odom_frame_id: wheel_odom
 
+  # Output command after linear and angular limits
+  publish_cmd: false
+
+  # Diagnostic
+  publish_wheel_joint_controller_state: false
+  
   # Wheel separation and diameter. These are both optional.
   # diff_drive_controller will attempt to read either one or both from the
   # URDF if not specified as a parameter

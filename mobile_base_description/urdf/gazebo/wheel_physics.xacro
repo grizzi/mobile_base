@@ -17,8 +17,8 @@
     <xacro:macro name="load_wheel_physics">
         <xacro:wheel_physics joint_id="${frontLeftWheelId}"  friction_coeff="2.5"/>
         <xacro:wheel_physics joint_id="${frontRightWheelId}" friction_coeff="2.5"/>
-        <xacro:wheel_physics joint_id="${backLeftWheelId}"   friction_coeff="0.0"/>
-        <xacro:wheel_physics joint_id="${backRightWheelId}"  friction_coeff="0.0"/>
+        <xacro:wheel_physics joint_id="${backLeftWheelId}"   friction_coeff="2.5"/>
+        <xacro:wheel_physics joint_id="${backRightWheelId}"  friction_coeff="2.5"/>
     </xacro:macro>
 
 </robot>

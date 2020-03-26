@@ -12,7 +12,7 @@
             <origin xyz="${X} ${Y} ${wheelHeight - chassisHeight/2.0}" rpy="-${0.5*PI} 0 0" />
             <axis xyz="0 0 1" rpy="0 0 0" />
             <dynamics damping="1.0" friction="0.0"/>
-            <limit effort="1" velocity="1"/>
+            <limit effort="1000" velocity="1000"/>
             <joint_properties damping="0.2" friction="0.2"/>
         </joint>
 
@@ -54,7 +54,6 @@
                 </geometry> 
                 <material name="green"/>
             </visual>
-            <inertial/>
         </link>
 
         <gazebo reference="base">

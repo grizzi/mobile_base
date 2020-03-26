@@ -10,6 +10,7 @@
   <!-- Run xacro script to generate Super mega bot description -->
   <param name="$(arg robot_name)/robot_description" command="$(find xacro)/xacro
     $(arg description_file)
+    robot_name:=$(arg robot_name)
     simulation:=$(arg simulation)
     wheel_joint_type:=$(arg wheel_joint_type)"/>
 </launch>
