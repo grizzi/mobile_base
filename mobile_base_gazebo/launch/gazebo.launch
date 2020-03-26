@@ -39,9 +39,9 @@
   
   <!-- ROBOT ARGUMENTS -->
   <!-- Name of the robot description parameter -->
-  <arg name="description_name_for_gazebo" default="mobile_base_description_for_gazebo"/>
+  <arg name="robot_name"                  default="mobile_base"/>
   <!-- Path of robot description -->
-  <arg name="description_file"            default="$(find mobile_base_gazebo)/gazebo/mobile_base_gazebo.xacro"/>
+  <arg name="description_file"            default="$(find mobile_base_description)/urdf/mobile_base_standalone.urdf.xacro"/>
 
   <!-- Load Gazebo world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -55,19 +55,17 @@
     <arg name="verbose"           value="$(arg verbose)"/>
   </include>
 
-    <!-- Load joint controller configurations from YAML file to parameter server -->
-  <rosparam file="$(find mobile_base_gazebo)/config/joint_controllers.yaml" command="load"/>
-
   <!-- Load robot description for gazebo -->
-  <include file="$(find mobile_base_gazebo)/launch/load.launch">
-    <arg name="description_name" value="$(arg description_name_for_gazebo)"/>
-    <arg name="description_file" value="$(arg description_file)"/>
-    <arg name="wheel_joint_type" value="continuous"/>
+  <include file="$(find mobile_base_description)/launch/load.launch">
+    <arg name="robot_name"        value="$(arg robot_name)"/>
+    <arg name="description_file"  value="$(arg description_file)"/>
+    <arg name="wheel_joint_type"  value="continuous"/>
+    <arg name="simulation"        value="true"/> 
   </include>
 
   <!-- Spawn robot in Gazebo -->
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-    args="-param $(arg description_name_for_gazebo) -urdf -model smb -x $(arg x)
+    args="-param $(arg robot_name)/robot_description -urdf -model mobile_base -x $(arg x)
       -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"
     output="screen"/>
 </launch>

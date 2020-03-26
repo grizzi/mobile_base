@@ -54,6 +54,7 @@
                 </geometry> 
                 <material name="green"/>
             </visual>
+            <inertial/>
         </link>
 
         <gazebo reference="base">

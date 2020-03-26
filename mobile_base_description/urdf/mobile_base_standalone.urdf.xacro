@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_base">
 	
-	<!-- Includes -->
-  <xacro:include filename="$(find mobile_base_description)/urdf/properties.urdf.xacro" />
-  <xacro:include filename="$(find mobile_base_description)/urdf/mobile_base.urdf.xacro"/>
-
-  <!-- Arguments -->
-  <xacro:arg name="wheel_joint_type"  default="fixed"/> <!-- continuous for gazebo -->
-  <xacro:mobile_base wheel_joint_type="$(arg wheel_joint_type)"/>
+  <!-- Includes -->
+  <xacro:arg name="simulation" 			default="false"/>
+  <xacro:arg name="wheel_joint_type"  	default="fixed"/> <!-- continuous for gazebo -->
+  
+  <!-- Load the base -->
+  <xacro:include filename="$(find mobile_base_description)/urdf/mobile_base_macro.urdf.xacro"/>
+  <xacro:load_mobile_base simulation="$(arg simulation)" wheel_joint_type="$(arg wheel_joint_type)"/>
+  
+  <!-- Ros control -->
+  <xacro:if value="$(arg simulation)">
+    <xacro:include filename="$(find mobile_base_description)/urdf/gazebo/control.xacro"/>
+  </xacro:if>
 </robot>

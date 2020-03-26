@@ -3,11 +3,13 @@
 
   <!-- Configurations (can also be set as argument) -->
   <arg name="description_file"   default="$(find mobile_base_description)/urdf/mobile_base_standalone.urdf.xacro"/>
-  <arg name="description_name"   default="/robot_description"/>
+  <arg name="robot_name"         default="mobile_base"/>
   <arg name="wheel_joint_type"   default="fixed"/>
+  <arg name="simulation"		     default="false"/>
 
   <!-- Run xacro script to generate Super mega bot description -->
-  <param name="$(arg description_name)" command="$(find xacro)/xacro
+  <param name="$(arg robot_name)/robot_description" command="$(find xacro)/xacro
     $(arg description_file)
+    simulation:=$(arg simulation)
     wheel_joint_type:=$(arg wheel_joint_type)"/>
 </launch>

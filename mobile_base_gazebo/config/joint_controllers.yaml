@@ -1,7 +1,0 @@
-mobile_base:
-  gazebo_ros_control:
-    pid_gains:
-      FL_WHEEL: {p: 100.0, i: 0.0, d: 10.0}
-      FR_WHEEL: {p: 100.0, i: 0.0, d: 10.0}
-      BL_WHEEL: {p: 100.0, i: 0.0, d: 10.0}
-      BR_WHEEL: {p: 100.0, i: 0.0, d: 10.0} # i:0.1  
