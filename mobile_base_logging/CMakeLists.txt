@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mobile_base_logging)
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra")
+
+find_package(catkin REQUIRED)
 
 catkin_package()
 
