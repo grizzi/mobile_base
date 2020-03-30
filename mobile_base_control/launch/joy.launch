@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+ <!-- joy node -->
+  <node respawn="true" pkg="joy"
+        type="joy_node" name="joy_node" >
+    <param name="dev" type="string" value="/dev/input/jsX" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+  <!-- Axes -->
+  <node pkg="mobile_base_control" type="joy_teleop_node" name="joy_twist" output="screen">
+    <param name="axis_linear"     value="1" type="int"/>
+    <param name="axis_angular"    value="0" type="int"/>
+    <param name="scale_linear"    value="2.0" type="double"/>
+    <param name="scale_angular"   value="2.0" type="double"/>
+    <param name="twist_topic"     value="/cmd/twist"/>
+    <param name="joy_topic"       value="/joy"/> 
+  </node>
+
+</launch>
