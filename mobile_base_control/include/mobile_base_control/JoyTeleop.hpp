@@ -2,18 +2,19 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/Joy.h>
-
+#include <shared_mutex>
 
 namespace joy_teleop{
 
 class JoyTeleop
 {
 public:
-  JoyTeleop();
+  JoyTeleop(ros::NodeHandle& nh);
 
 private:
-  bool initFromParams();
+  bool initParams();
   void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
+  void pubThreadCallback(const ros::TimerEvent& event);
 
   ros::NodeHandle nh_;
 
@@ -25,6 +26,12 @@ private:
   std::string joy_topic_;
   ros::Publisher twist_pub_;
   ros::Subscriber joy_sub_;
+  ros::Timer pub_thread_;
+
+  std::atomic_bool enabled_;
+
+  mutable std::shared_mutex mutex_;
+  geometry_msgs::Twist last_twist_;
 
 };
 

@@ -3,7 +3,7 @@
  <!-- joy node -->
   <node respawn="true" pkg="joy"
         type="joy_node" name="joy_node" >
-    <param name="dev" type="string" value="/dev/input/jsX" />
+    <param name="dev" type="string" value="/dev/input/jsLogitechF710" />
     <param name="deadzone" value="0.12" />
   </node>
 
@@ -13,7 +13,7 @@
     <param name="axis_angular"    value="0" type="int"/>
     <param name="scale_linear"    value="2.0" type="double"/>
     <param name="scale_angular"   value="2.0" type="double"/>
-    <param name="twist_topic"     value="/cmd/twist"/>
+    <param name="twist_topic"     value="/mobile_base/skid_steer_controller/cmd_vel"/>
     <param name="joy_topic"       value="/joy"/> 
   </node>
 

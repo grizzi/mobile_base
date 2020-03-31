@@ -4,7 +4,9 @@
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "joy_teleop");
-  joy_teleop::JoyTeleop joy;
+  ros::init(argc, argv, "joy_twist_node");
+  ros::NodeHandle nh("~");
+
+  joy_teleop::JoyTeleop joy(nh);
   ros::spin();
 }

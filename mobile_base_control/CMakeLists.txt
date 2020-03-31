@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mobile_base_control)
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra")
 
 set(PACKAGE_DEPENDENCIES
   controller_manager
