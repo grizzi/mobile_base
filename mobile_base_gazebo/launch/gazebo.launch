@@ -6,11 +6,11 @@
   <!-- Run Gazebo headless -->
   <arg name="headless"                              default="false"/>
   <!-- Model path -->
-  <arg name="model_path"                            default="$(find gazebo_worlds)/.."/>
+  <arg name="model_path"                            default="$(find gazebo_ros)/.."/>
   <!-- Name of the world -->
   <arg name="world"                                 default="empty"/>
   <!-- Path to the world file -->
-  <arg name="world_file"                            default="$(find gazebo_worlds)/worlds/$(arg world).world"/>
+  <arg name="world_file"                            default="$(find gazebo_ros)/worlds/$(arg world).world"/>
   <!-- Set the name of the Gazebo config file -->
   <arg name="config_file"                           default="default"/>
   <!-- Set true to fix the robot's main body -->
@@ -18,7 +18,7 @@
   <!-- Set the initial pose of the robot's main body -->
   <arg name="x"                                     default="0.0"/>
   <arg name="y"                                     default="0.0"/>
-  <arg name="z"                                     default="0.4"/>
+  <arg name="z"                                     default="0.0"/>
   <arg name="roll"                                  default="0.0"/>
   <arg name="pitch"                                 default="0.0"/>
   <arg name="yaw"                                   default="0.0"/>
